@@ -16,7 +16,9 @@ if(jQuery)(function() {
 	var defaults = {
 		inSpeed: 150,
 		outSpeed: 75,
-		buttons: ['right']
+		buttons: ['right'],
+		showAnim: "fadeIn",
+		hideAnim: "fadeOut"
 	};
 
 	$.extend($.fn, {
@@ -91,7 +93,7 @@ if(jQuery)(function() {
 						
 						// Show the menu
 						$(document).off('click.contextMenu');
-						$(menu).css({ top: y, left: x }).fadeIn(o.inSpeed);
+						$(menu).css({ top: y, left: x })[o.showAnim](o.inSpeed);
 						// Hover events
 						$(menu).find('A').mouseover( function() {
 							$(menu).find('LI.hover').removeClass('hover');
@@ -144,7 +146,7 @@ if(jQuery)(function() {
 						setTimeout( function() { // Delay for Mozilla
 							$(document).on('click.contextMenu', function() {
 								$(document).off('click.contextMenu').off('keypress.contextMenu');
-								$(menu).fadeOut(o.outSpeed);
+								$(menu)[o.hideAnim](o.outSpeed);
 								return false;
 							});
 						}, 0);
